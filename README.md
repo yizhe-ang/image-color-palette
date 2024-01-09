@@ -1,5 +1,7 @@
 # photo-gallery
 
+Credit Google Arts
+
 ## Downloading Images from Instagram
 You can use [Instaloader](https://github.com/instaloader/instaloader) for this:
 ```bash
