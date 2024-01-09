@@ -20,12 +20,8 @@ export const Experience = () => {
   // const textures = useTexture(data);
 
   const { Image: image } = useControls({
-    Image: { image: data[90] }
-  })
-
-  useEffect(() => {
-    console.log(image)
-  }, [image])
+    Image: { image: "img_4.jpg" },
+  });
 
   return (
     <>
@@ -41,7 +37,7 @@ export const Experience = () => {
         samplingRatio={1}
         pointSize={5}
         resolution={1}
-        crop={10}
+        crop={0}
       />
 
       {/* {layout.map((l, i) => {

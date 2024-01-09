@@ -282,7 +282,7 @@ export const ImageParticles = ({
     "To RGB": toRgb,
     "To Clusters": toCluster,
     "To Image": toImage,
-  } = useControls("Transitions", {
+  } = useControls("Transitions (in order)", {
     "To RGB": {
       value: 0,
       min: 0,
@@ -432,8 +432,6 @@ export const ImageParticles = ({
       .to(points.current.material.uniforms.uToPaletteColor, {
         value: 0,
       });
-
-    console.log(tl.current);
   }, []);
 
   useFrame(() => {
