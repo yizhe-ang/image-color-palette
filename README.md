@@ -1,6 +1,6 @@
-# photo-gallery
+# Visualization of Color Palettes from Images
 
-Credit Google Arts
+Uses the [palette extractor](https://github.com/googleartsculture/art-palette) from Google Arts & Culture's Art Palette!
 
 ## Downloading Images from Instagram
 You can use [Instaloader](https://github.com/instaloader/instaloader) for this:

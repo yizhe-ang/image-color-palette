@@ -6,7 +6,7 @@ import {
   useTexture,
 } from "@react-three/drei";
 import { extend, useFrame, useThree } from "@react-three/fiber";
-import { useControls } from "leva";
+import { button, useControls } from "leva";
 import { useEffect, useMemo, useRef } from "react";
 import { resolveLygia } from "resolve-lygia";
 import * as THREE from "three";
@@ -56,8 +56,6 @@ function extractPalette(texture, count, crop = 0.0) {
 
   // const colorThief = new ColorThief();
   // const palette = colorThief.getPalette(image, 5);
-
-  // console.log(palette);
 
   // const output = palette.map(
   //   (c) => new THREE.Color(c[0] / 255, c[1] / 255, c[2] / 255)
@@ -340,6 +338,14 @@ export const ImageParticles = ({
     },
   }));
 
+  useControls({
+    "Source Code": button(() => {
+      window
+        .open("https://github.com/yizhe-ang/image-color-palette", "_blank")
+        .focus();
+    }),
+  });
+
   const palette = useMemo(() => {
     const palette = extractPalette(texture, PALETTE_COUNT, crop);
 
@@ -370,7 +376,6 @@ export const ImageParticles = ({
           cubeOpacity: 1,
           onUpdate: function () {
             cube.current.children.forEach((c) => {
-              console.log(c);
               c.material.opacity = animateProps.current.cubeOpacity;
             });
           },
@@ -378,15 +383,15 @@ export const ImageParticles = ({
         "<"
       )
       // To Cluster
-      .to(points.current.material.uniforms.uToCluster, {
-        value: 1,
-      })
+      // .to(points.current.material.uniforms.uToCluster, {
+      //   value: 1,
+      // })
       .to(
         points.current.material.uniforms.uToPaletteColor,
         {
           value: 1,
-        },
-        "<"
+        }
+        // "<"
       )
       .to(
         animateProps.current,
@@ -407,22 +412,23 @@ export const ImageParticles = ({
       .to(
         animateProps.current,
         {
-          cubeOpacity: 0,
+          clustersScale: 0,
           onUpdate: function () {
-            cube.current.children.forEach((c) => {
-              c.material.opacity = animateProps.current.cubeOpacity;
+            clusters.current.children.forEach((c) => {
+              c.scale.setScalar(animateProps.current.clustersScale);
             });
           },
+          duration: 0.3,
         },
         "<"
       )
       .to(
         animateProps.current,
         {
-          clustersScale: 0,
+          cubeOpacity: 0,
           onUpdate: function () {
-            clusters.current.children.forEach((c) => {
-              c.scale.setScalar(animateProps.current.clustersScale);
+            cube.current.children.forEach((c) => {
+              c.material.opacity = animateProps.current.cubeOpacity;
             });
           },
         },
@@ -467,7 +473,7 @@ export const ImageParticles = ({
             lineWidth={0.01}
             opacity={0}
             transparent
-            color={colors.zinc["500"]}
+            color={colors.zinc["600"]}
             depthTest={false}
           />
         </mesh>
@@ -477,7 +483,7 @@ export const ImageParticles = ({
             lineWidth={0.01}
             opacity={0}
             transparent
-            color={colors.zinc["500"]}
+            color={colors.zinc["600"]}
             depthTest={false}
           />
         </mesh>
